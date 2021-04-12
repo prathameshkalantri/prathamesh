@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+public class Solution
+{   
+    public static void main(String[] args) 
+    {
+        Scanner s = new Scanner(System.in);
+        
+        int i,j,tmp;
+        float temp;
+        int jobs = s.nextInt();
+        
+        float days, penalty;          
+        int srno[] = new int[jobs];
+        float ratio[] = new float[jobs];
+        
+        for (i=0; i<jobs;i++)
+        {
+            days = s.nextInt();
+            penalty = s.nextInt();
+            ratio[i] = penalty / days;
+        }
+        
+        for (i=0; i<srno.length;i++)
+            srno[i] = i+1;
+               
+        for(i=0;i<ratio.length;i++)
+        {
+            for(j=i+1;j<ratio.length;j++)
+            {
+                if(ratio[i] < ratio[j])
+                {
+                    temp = ratio[i];
+                    ratio[i] = ratio[j];
+                    ratio[j] = temp;
+
+                    tmp = srno[i];
+                    srno[i] = srno[j];
+                    srno[j] = tmp;
+                }
+            }
+        }
+
+        for (i=0; i<srno.length;i++)
+        {
+            System.out.print(srno[i]);
+            if(i != srno.length-1) 
+                System.out.print(" ");
+        }
+        System.out.println();
+    }
+}

@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+class Main
+{
+    public static void main(String[] args) throws Exception
+    {
+        Scanner s = new Scanner(System.in);
+        int a1=0, a2=1, b1=1, b2=1, c1=1, c2=0;
+        int no1 = s.nextInt();
+        int no2 = s.nextInt();
+        String result = "";
+        
+        if(no1==1 && no2==1)
+            System.exit(0);
+                    
+        while(b1 != no1 && b2!= no2)
+        {
+            if(b1*no2 > b2*no1)
+            {
+                result = result + "L";
+                a2 = b1;
+                c2 = b2;
+            }
+            else
+            {
+                result = result + "R";
+                a1 = b1;
+                c1 = b2;
+            }
+            b1 = a1 + a2;
+            b2 = c1 + c2;
+        }
+        System.out.println(result);
+    }
+}

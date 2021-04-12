@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class Main
+{   
+    public static void main(String[] args) 
+    {
+        Scanner s = new Scanner(System.in); 
+        
+        int cases = s.nextInt(), totTime;
+        s.nextLine();
+        String input[];
+        int stime[] = new int[cases];
+        int etime[] = new int[cases];
+        
+        int startTime = 10*60;
+        int endTime = 18*60;
+        
+        for(int i=0;i<cases;i++)
+        {
+            input = s.nextLine().split(" ");
+            stime[i] = getMinutes(input[0]);
+            etime[i] = getMinutes(input[1]);
+        }
+        
+        totTime = Math.abs(startTime-stime[0]);
+        if(Math.abs(etime[etime.length-1] - endTime) > totTime)
+            totTime = Math.abs(etime[etime.length-1] - endTime);
+                            
+        for(int i=0;i<stime.length-1;i++)
+        {
+            if(stime[i+1] != etime[i])
+                totTime = Math.max(totTime, Math.abs(stime[i+1] - etime[i]));
+        }
+        
+        getHrs(totTime);
+        
+    }
+    
+    public static int getMinutes(String time)
+    {
+        int hrs, min;
+        String temp[] = time.split(":");
+        hrs = Integer.parseInt(temp[0]);
+        min = Integer.parseInt(temp[1]); 
+        return hrs*60 + min;
+    }
+    
+    public static void getHrs(int minutes)
+    {
+        int hrs, min;
+        hrs = minutes / 60;
+        min = minutes % 60;            
+        if(hrs==0)
+            System.out.printf("the longest nap will last for %d minutes.\n",min);
+        else
+            System.out.printf("the longest nap will last for %d hours and %d minutes.\n",hrs,min);
+    }
+}

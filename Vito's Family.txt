@@ -1,0 +1,25 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+class Main
+{
+    public static void main(String[] args) throws Exception
+    {
+        Scanner s = new Scanner(System.in);
+        
+        int noRel = s.nextInt(), totDist=0;
+        int relatives [] = new int [noRel];
+        
+        for(int i=0;i<relatives.length;i++)
+            relatives[i] = s.nextInt();
+        
+        Arrays.sort(relatives);
+        
+        int middle = relatives[relatives.length/2];
+        
+        for(int i=0;i<relatives.length;i++)
+            totDist = totDist + Math.abs(middle-relatives[i]);
+        
+        System.out.println(totDist);
+    }
+}

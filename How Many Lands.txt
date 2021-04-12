@@ -1,0 +1,22 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+
+class Main
+{
+    public static void main(String[] args) throws Exception
+    {
+        Scanner s = new Scanner(System.in);                
+        
+        BigInteger noPts = s.nextBigInteger();
+        
+        BigInteger ans = BigInteger.ZERO;
+        BigInteger a = noPts.pow(4);
+        BigInteger b = noPts.pow(3).multiply(BigInteger.valueOf(6));
+        BigInteger c = noPts.pow(2).multiply(BigInteger.valueOf(23));
+        BigInteger d = noPts.multiply(BigInteger.valueOf(18));
+        ans = ans.add(a).subtract(b).add(c).subtract(d);
+        ans = ans.divide(BigInteger.valueOf(24)).add(BigInteger.ONE);
+        
+        System.out.println(ans);
+    }
+}

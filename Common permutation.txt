@@ -1,0 +1,23 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        Scanner s = new Scanner(System.in);
+        String result = "";
+        String fs = s.nextLine();
+        String ss = s.nextLine();
+        
+        for(int i=0;i<fs.length();i++)
+        {
+            if(ss.contains(""+fs.charAt(i)))
+                result += fs.charAt(i);
+        }
+        char arr[] = result.toCharArray();
+        Arrays.sort(arr);
+        
+        System.out.println(new String(arr));
+    }
+}

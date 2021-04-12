@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+class Main
+{
+    public static void main(String[] args) throws Exception
+    {
+        Scanner s = new Scanner(System.in);
+        int steps, n;
+        int sp = s.nextInt();
+        int ep = s.nextInt();
+        int diff = ep-sp;
+        n = (int) Math.sqrt(diff);        
+        steps = n;
+        diff = diff - n*(n+1)/2;
+        
+        while(diff > 0)
+        {
+            while(n*(n+1)/2 > diff)
+                n--;
+            
+            if(n*(n+1)/2 == diff)
+            {
+                diff = 0;
+                steps = steps + n;                
+            }
+            else
+            {
+                diff = diff - n;
+                steps++;
+            }                        
+        }
+        System.out.println(steps);
+    }
+}

@@ -1,0 +1,31 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+
+class Main
+{
+    public static void main(String[] args) throws Exception
+    {
+        Scanner s = new Scanner(System.in);        
+        
+        BigInteger f1 = new BigInteger("0");
+        BigInteger f2 = new BigInteger("1");
+        BigInteger f = new BigInteger("0");
+        
+        BigInteger sp = s.nextBigInteger();
+        BigInteger ep = s.nextBigInteger();
+        
+        int count = 0;
+        
+        while(f.compareTo(ep) <= 0)
+        {
+            if(f.compareTo(sp) >= 0)
+                count++;
+                        
+            f = f1.add(f2);
+            f1 = f2;
+            f2 = f;
+            
+        }
+        System.out.println(count);
+    }
+}

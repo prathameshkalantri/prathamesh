@@ -1,0 +1,40 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+class Main
+{
+    public static void main(String[] args) throws Exception
+    {
+        Scanner s = new Scanner(System.in);
+	while(s.hasNext())
+	{
+        int size = s.nextInt();
+        boolean isJolly = true;
+        
+        int arr []  = new int [size];
+        int sorted []  = new int [size-1];
+        
+        for(int i=0;i<arr.length;i++)
+            arr[i] = s.nextInt();
+        
+        for(int i=0;i<sorted.length;i++)        
+            sorted[i] = Math.abs(arr[i+1] - arr[i]);
+        
+        Arrays.sort(sorted);
+                    
+        for(int i=0;i<sorted.length;i++)
+        {
+            if(sorted[i] != (i+1))
+            {
+                isJolly = false;
+                break;   
+            }                
+        }
+        
+        if (isJolly)
+            System.out.println("Jolly");
+        else
+            System.out.println("Not Jolly");
+        }
+    }
+}

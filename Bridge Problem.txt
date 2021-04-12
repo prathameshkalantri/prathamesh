@@ -1,0 +1,91 @@
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class Main 
+{
+    public static int data [];
+    public static void main(String[] args) 
+    {
+        Scanner sc = new Scanner(System.in);
+        int iteration = sc.nextInt();
+        
+        for (int i = 0; i < iteration; i++) 
+        {
+            int size = sc.nextInt();
+            data = new int[size];
+            for (int j = 0; j < size; j++) 
+                data[j] = sc.nextInt();
+
+            Arrays.sort(data);
+            
+            sendPair(0, data.length - 1).printSolution();
+ 
+            if (i < iteration - 1)
+                System.out.println();
+        }
+    }
+
+    private static TimeAndPath sendPair(int begin, int end) 
+    {
+        TimeAndPath info = new TimeAndPath();
+        
+        int A = data[begin];
+        if (end == begin) 
+        {
+            info.time = A;
+            info.q.add(String.valueOf(A));
+            return info;
+        }
+        int Z = data[end];
+        if (end == begin + 1) 
+        {
+            info.time = Z;
+            info.q.add(A + " " + Z);
+            return info;
+        }
+        int B = data[begin + 1];
+        if (end == begin + 2) 
+        {
+            info.time = A + B + Z;
+            info.q.add(A + " " + B);
+            info.q.add(String.valueOf(A));
+            info.q.add(A + " " + Z);
+            return info;
+        }
+        int Y = data[end - 1];
+        if (A + 2 * B + Z <= 2 * A + Z + Y) 
+        {
+            info = sendPair( begin, end - 2);
+            info.time += A + 2 * B + Z;
+            info.q.addFirst(B + "");
+            info.q.addFirst(Y + " " + Z);
+            info.q.addFirst(A + "");
+            info.q.addFirst(A + " " + B);
+        } 
+        else 
+        {
+            info = sendPair(begin, end - 2);
+            info.time += 2 * A + Z + Y;        
+            info.q.addFirst(A + "");
+            info.q.addFirst(A + " " + Z);
+            info.q.addFirst(A + "");
+            info.q.addFirst(A + " " + Y);
+        }
+        return info;
+    }
+
+    private static class TimeAndPath 
+    {
+        int time;
+        Deque<String> q = new LinkedList<>();
+
+        void printSolution() 
+        {
+            System.out.println(time);
+            for (String p : q)
+                System.out.println(p);
+        }
+    }
+}

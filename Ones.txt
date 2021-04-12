@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+class Main
+{
+    public static void main(String[] args) throws Exception
+    {
+        Scanner s = new Scanner(System.in);
+        int rem = 1, count = 1;
+        int no = s.nextInt();
+        
+        if(no%2==0 || no%5==0)
+            System.exit(0);
+        
+        while(rem % no != 0)
+        {
+            rem = (rem*10+1) % no;
+            count++;
+        }
+        System.out.println(count);
+    }
+}

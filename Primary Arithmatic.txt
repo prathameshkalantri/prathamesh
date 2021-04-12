@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+class Main
+{
+    public static void main(String[] args) throws Exception
+    {
+        Scanner s = new Scanner(System.in);
+        
+        int fno = s.nextInt();
+        int sno = s.nextInt();
+        int carry=0, sum=0, count=0, a, b;
+        
+        while(fno != 0 || sno != 0)
+        {
+            a = fno%10;
+            b = sno%10;
+            
+            sum = carry + a + b;
+            
+            if(sum >= 10)
+            {
+                carry = 1;
+                count++;
+            }
+            else 
+                carry = 0;
+            
+            fno /= 10;
+            sno /= 10;
+        }
+        
+        switch (count) 
+        {
+            case 0:
+                System.out.println("No carry operation.");
+                break;
+            case 1:
+                System.out.println("1 carry operation.");
+                break;
+            default:
+                System.out.println(count+" carry operations.");
+                break;
+        }
+    }
+}

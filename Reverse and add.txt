@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+class Main
+{
+    public static void main(String[] args) throws Exception
+    {
+        Scanner s = new Scanner(System.in);
+        long totsum =0;
+        int count = 0;
+        long num = s.nextInt();
+        
+        while(true)
+        {
+            totsum = num + reverseOf(num);
+            num = totsum;
+            count++;
+            
+            if(totsum == reverseOf(totsum))
+                break;
+        }
+        System.out.println(count +" " +totsum);        
+    }
+    
+    static long reverseOf(long no)
+    {
+        long mod, sum=0;        
+        while(no > 0)
+        {
+            mod = no%10;
+            sum = sum * 10 + mod;
+            no = no/10;
+        }
+        return sum;
+    }
+}
